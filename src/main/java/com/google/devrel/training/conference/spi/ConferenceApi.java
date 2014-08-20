@@ -55,6 +55,11 @@ public class ConferenceApi {
         String displayName = "Your name will go here";
         TeeShirtSize teeShirtSize = TeeShirtSize.NOT_SPECIFIED;
         
+        displayName = profileForm.getDisplayName();
+        if (profileForm.getTeeShirtSize() != null) {
+        	teeShirtSize = profileForm.getTeeShirtSize();
+        }
+        
         // TODO 2
         // If the user is not logged in, throw an UnauthorizedException
 
