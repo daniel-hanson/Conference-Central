@@ -48,7 +48,7 @@ public class ConferenceApi {
 
     // TODO 1 Pass the ProfileForm parameter
     // TODO 2 Pass the User parameter
-    public Profile saveProfile(ProfileForm profileForm) throws UnauthorizedException {
+    public Profile saveProfile(final User user, ProfileForm profileForm) throws UnauthorizedException {
 
         String userId = null;
         String mainEmail = null;
@@ -58,6 +58,17 @@ public class ConferenceApi {
         displayName = profileForm.getDisplayName();
         if (profileForm.getTeeShirtSize() != null) {
         	teeShirtSize = profileForm.getTeeShirtSize();
+        }
+        
+        if (user == null) {
+        	throw new UnauthorizedException("Authorization required");
+        }
+        
+        mainEmail = user.getEmail();
+        userId = user.getUserId();
+        
+        if (displayName == null) {
+        	displayName = extractDefaultDisplayNameFromEmail(user.getEmail());
         }
         
         // TODO 2
