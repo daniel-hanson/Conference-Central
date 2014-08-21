@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/iJSdDM1ZfYchRP92UI6a1N6caHw\"",
+ "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/7tXtdzI87gboD85_g-p9vmUw0cU\"",
  "discoveryVersion": "v1",
  "id": "conference:v1",
  "name": "conference",
@@ -87,6 +87,18 @@
     }
    }
   },
+  "ProfileForm": {
+   "id": "ProfileForm",
+   "type": "object",
+   "properties": {
+    "displayName": {
+     "type": "string"
+    },
+    "teeShirtSize": {
+     "$ref": "TeeShirtSize"
+    }
+   }
+  },
   "TeeShirtSize": {
    "id": "TeeShirtSize",
    "type": "string",
@@ -125,6 +137,14 @@
   },
   "conference.saveProfile": {
    "id": "conference.saveProfile",
+   "parameters": {
+    "resource": {
+     "$ref": "ProfileForm"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
    "returns": {
     "$ref": "Profile"
    },

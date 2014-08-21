@@ -48,35 +48,47 @@ public class ConferenceApi {
 
     // TODO 1 Pass the ProfileForm parameter
     // TODO 2 Pass the User parameter
-    public Profile saveProfile(final User user, ProfileForm profileForm) throws UnauthorizedException {
-
-        String userId = null;
-        String mainEmail = null;
-        String displayName = "Your name will go here";
-        TeeShirtSize teeShirtSize = TeeShirtSize.NOT_SPECIFIED;
+    public Profile saveProfile(final User user, ProfileForm profileForm) throws UnauthorizedException {        
         
-        displayName = profileForm.getDisplayName();
-        if (profileForm.getTeeShirtSize() != null) {
-        	teeShirtSize = profileForm.getTeeShirtSize();
-        }
-        
-        if (user == null) {
+    	// If the user is not logged in, throw an UnauthorizedException
+    	if (user == null) {
         	throw new UnauthorizedException("Authorization required");
         }
         
-        mainEmail = user.getEmail();
-        userId = user.getUserId();
+        // Get the userId and mainEmail
+        String mainEmail = user.getEmail();
+        String userId = user.getUserId();
         
-        if (displayName == null) {
-        	displayName = extractDefaultDisplayNameFromEmail(user.getEmail());
+        // Get the displayName and teeShirtSize sent by the request
+        String displayName = profileForm.getDisplayName();
+        TeeShirtSize teeShirtSize = profileForm.getTeeShirtSize();
+        
+        // Get the Profile from the datastore if it exists
+        // otherwise create a new one
+        Profile profile = ofy().load().key(Key.create(Profile.class,
+        		userId)).now();
+        		
+        if (profile == null) {
+        	// Populate the displayName and teeShirtSize with default values
+        	// if not sent in the request
+        	if (displayName == null) {
+        		displayName = extractDefaultDisplayNameFromEmail(user.getEmail());
+        	}
+        	if (teeShirtSize == null) {
+        		teeShirtSize = TeeShirtSize.NOT_SPECIFIED;
+        	}
+        	
+        	// Now create a new profile entity
+        	profile = new Profile(userId, displayName, mainEmail, teeShirtSize);
+        } else {
+        	// The Profile entity already exists
+        	// Update the Profile entity
+        	profile.update(displayName, teeShirtSize);
         }
 
-        // Create a new Profile entity from the
-        // userId, displayName, mainEmail and teeShirtSize
-        Profile profile = new Profile(userId, displayName, mainEmail, teeShirtSize);
-
+        // Save the entity in the datastore
         ofy().save().entity(profile).now();
-
+        
         // Return the profile
         return profile;
     }
