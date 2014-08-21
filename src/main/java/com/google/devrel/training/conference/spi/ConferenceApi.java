@@ -70,31 +70,12 @@ public class ConferenceApi {
         if (displayName == null) {
         	displayName = extractDefaultDisplayNameFromEmail(user.getEmail());
         }
-        
-        // TODO 2
-        // If the user is not logged in, throw an UnauthorizedException
-
-        // TODO 1
-        // Set the teeShirtSize to the value sent by the ProfileForm, if sent
-        // otherwise leave it as the default value
-
-        // TODO 1
-        // Set the displayName to the value sent by the ProfileForm, if sent
-        // otherwise set it to null
-
-        // TODO 2
-        // Get the userId and mainEmail
-
-        // TODO 2
-        // If the displayName is null, set it to default value based on the user's email
-        // by calling extractDefaultDisplayNameFromEmail(...)
 
         // Create a new Profile entity from the
         // userId, displayName, mainEmail and teeShirtSize
         Profile profile = new Profile(userId, displayName, mainEmail, teeShirtSize);
 
-        // TODO 3 (In Lesson 3)
-        // Save the Profile entity in the datastore
+        ofy().save().entity(profile).now();
 
         // Return the profile
         return profile;
@@ -116,11 +97,10 @@ public class ConferenceApi {
             throw new UnauthorizedException("Authorization required");
         }
 
-        // TODO
         // load the Profile Entity
-        String userId = ""; // TODO
-        Key key = null; // TODO
-        Profile profile = null; // TODO load the Profile entity
+        String userId = user.getUserId();
+        Key key = Key.create(Profile.class, userId);
+        Profile profile = (Profile) ofy().load().key(key).now();
         return profile;
     }
 }
