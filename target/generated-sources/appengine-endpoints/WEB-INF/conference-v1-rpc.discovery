@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/7tXtdzI87gboD85_g-p9vmUw0cU\"",
+ "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/eKUhHI4aCMTaKSG2DSeNSLosqk4\"",
  "discoveryVersion": "v1",
  "id": "conference:v1",
  "name": "conference",
@@ -11,8 +11,8 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rpc",
- "rootUrl": "https://your-app-id.appspot.com/_ah/api/",
- "rpcUrl": "https://your-app-id.appspot.com/_ah/api/rpc",
+ "rootUrl": "https://conference-central-endpoints.appspot.com/_ah/api/",
+ "rpcUrl": "https://conference-central-endpoints.appspot.com/_ah/api/rpc",
  "rpcPath": "/_ah/api/rpc",
  "parameters": {
   "alt": {

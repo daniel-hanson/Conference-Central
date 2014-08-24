@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/7tXtdzI87gboD85_g-p9vmUw0cU\"",
+ "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/eKUhHI4aCMTaKSG2DSeNSLosqk4\"",
  "discoveryVersion": "v1",
  "id": "conference:v1",
  "name": "conference",
@@ -11,9 +11,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://your-app-id.appspot.com/_ah/api/conference/v1/",
+ "baseUrl": "https://conference-central-endpoints.appspot.com/_ah/api/conference/v1/",
  "basePath": "/_ah/api/conference/v1/",
- "rootUrl": "https://your-app-id.appspot.com/_ah/api/",
+ "rootUrl": "https://conference-central-endpoints.appspot.com/_ah/api/",
  "servicePath": "conference/v1/",
  "batchPath": "batch",
  "parameters": {
