@@ -175,6 +175,7 @@ public class ConferenceQueryForm {
         Query<Conference> query = ofy().load().type(Conference.class);
         if (inequalityFilter == null) {
             // Order by name.
+        	// TODO fix "java.lang.IllegalArgumentException: No class was registered" bug
             query = query.order("name");
         } else {
             // If we have any inequality filters, order by the field first.
